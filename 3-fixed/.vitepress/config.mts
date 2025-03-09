@@ -30,6 +30,12 @@ export default defineConfig({
     if (post) {
       pageData.frontmatter.prev = post.prev;
       pageData.frontmatter.next = post.next;
+    } else if (pageData.filePath === 'posts/index.md') {
+      pageData.frontmatter.next = { text: 'Home', link: '/' };
+      pageData.frontmatter.prev = {
+        text: posts[0]?.text,
+        link: posts[0]?.filePath,
+      }
     }
   },
 });
