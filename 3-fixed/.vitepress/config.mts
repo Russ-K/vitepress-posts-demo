@@ -24,4 +24,12 @@ export default defineConfig({
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
   },
+
+  async transformPageData(pageData, { siteConfig }) {
+    const post = posts.find((post) => post.filePath === pageData.filePath);
+    if (post) {
+      pageData.frontmatter.prev = post.prev;
+      pageData.frontmatter.next = post.next;
+    }
+  },
 });
